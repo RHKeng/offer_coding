@@ -14,48 +14,22 @@ int main() {
 
     float temp = 1.0;
     float finalP = 0.0;
+    int j = 0;
     for(int i = 0; i < times; ++i){
-        //代表是小明先
         if(i % 2 == 0){
-            for(int j = 0; j < size; ++j){
-                if(j % 2 == 0){     //代表是小明的
-                    finalP += (temp * allNum[j]);
-                    temp = temp * (1 - allNum[j]);
-                }else{
-                    temp = temp * (1 - allNum[j]);
-                }
-            }
+            //代表是小明
+            finalP += temp * allNum[j];
+            temp = temp * (1 - allNum[j]);
         }else{
-            if(size % 2 == 0){
-                for(int j = 0; j < size; ++j){
-                    if(j % 2 == 0){     //代表是小明的
-                        finalP += (temp * allNum[j]);
-                        temp = temp * (1 - allNum[j]);
-                    }else{
-                        temp = temp * (1 - allNum[j]);
-                    }
-                }
-            }else{
-                //代表是小华先
-                for(int j = 0; j < size; ++j){
-                    if(j % 2 == 1){     //代表是小明的
-                        finalP += (temp * allNum[j]);
-                        temp = temp * (1 - allNum[j]);
-                    }else{
-                        temp = temp * (1 - allNum[j]);
-                    }
-                }
-            }
+            //代表是小华
+            temp = temp * (1 - allNum[j]);
+        }
+        if(j == size - 1){
+            j = 0;
+        }else{
+            ++j;
         }
     }
-
-//    int tempNum = finalP * 100000;
-//    if(tempNum % 10 >= 5){
-//        tempNum = tempNum - (tempNum % 10) + 10;
-//    }else{
-//        tempNum = tempNum - (tempNum % 10);
-//    }
-//    float finalCout = (float)tempNum / 100000;
 
     //四舍五入保留小数点后四位
     std::cout << setiosflags(std::ios::fixed);
